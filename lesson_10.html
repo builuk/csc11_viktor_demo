@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пара 10. Tailwind CSS: utility-first, responsive, states, dark mode, apply</title>
+  <style>
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#4b5563;
+  --accent:#1d4ed8;
+  --border:#dbe1ea;
+  --soft:#eef4ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:1.65;
+  color:var(--text);
+  background:var(--bg);
+}
+.wrapper{
+  max-width:1120px;
+  margin:0 auto;
+  padding:32px 20px 60px;
+}
+header{
+  background:linear-gradient(135deg,#1d4ed8,#2563eb);
+  color:#fff;
+  padding:28px;
+  border-radius:20px;
+  margin-bottom:24px;
+}
+h1{margin:0 0 8px;font-size:34px}
+h2{margin:0 0 14px;font-size:26px}
+h3{margin:0 0 10px;font-size:20px}
+h4{margin:0 0 8px;font-size:17px}
+p{margin:0 0 12px}
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+  margin-bottom:20px;
+  box-shadow:0 8px 24px rgba(15,23,42,.05);
+}
+.subsection{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid #e5e7eb;
+}
+ul,ol{margin:0;padding-left:24px}
+li{margin-bottom:8px}
+.meta{
+  color:#e5edff;
+  font-size:15px;
+}
+.code{
+  background:#0f172a;
+  color:#e2e8f0;
+  padding:16px;
+  border-radius:14px;
+  overflow:auto;
+  font-family:Consolas, Monaco, monospace;
+  white-space:pre-wrap;
+  font-size:14px;
+}
+.note{
+  padding:14px 16px;
+  background:#eff6ff;
+  border-left:4px solid var(--accent);
+  border-radius:10px;
+}
+.tip{
+  padding:12px 14px;
+  background:#f8fafc;
+  border:1px solid #dbeafe;
+  border-radius:12px;
+  margin-top:10px;
+}
+.footer{
+  color:var(--muted);
+  font-size:14px;
+  text-align:center;
+  margin-top:12px;
+}
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#dbeafe;
+  color:#1e40af;
+  font-size:14px;
+  margin-top:8px;
+}
+.preview{
+  padding:18px;
+  border:1px dashed #bfd2f8;
+  border-radius:18px;
+  background:#f8fbff;
+  margin-top:12px;
+}
+.grid-two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+th,td{
+  border:1px solid #dbe1ea;
+  padding:10px 12px;
+  text-align:left;
+  vertical-align:top;
+}
+th{background:#f8fafc}
+@media (max-width: 860px){
+  .grid-two{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Пара 10. Tailwind CSS: utility-first, responsive, states, dark mode, apply</h1>
+      <div class="meta">Тема пари</div>
+      <div class="badge">Пояснення + багато прикладів + практика + домашнє завдання</div>
+    </header>
+
+    <section class="section">
+      <h2>Тема пари</h2>
+      <p>В ході пари ми познайомимось з іншим стилем роботи з CSS: не через довгі власні класи, а через готові утиліти прямо в HTML.</p>
+    </section>
+
+    <section class="section"><h2>1. Utility-first підхід</h2>
+<div class="subsection">
+<h3>Ідея Tailwind</h3>
+<p>Tailwind дає багато маленьких класів, кожен з яких відповідає за одну річ: колір, відступ, розмір шрифту, flex, grid.</p>
+<p>Це пришвидшує складання інтерфейсу, особливо на простих і середніх екранах.</p>
+</div>
+</section><section class="section"><h2>2. Базові класи і стани</h2>
+<div class="subsection">
+<h3>Відступи, кольори, hover</h3>
+<p>Класи на кшталт p-6, rounded-2xl, bg-blue-600 і hover:bg-blue-700 описують вигляд компонента прямо в HTML.</p>
+<h4>HTML</h4>
+<div class="code">&lt;button class=&quot;px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700&quot;&gt;
+  Спробувати
+&lt;/button&gt;</div>
+</div>
+</section><section class="section"><h2>3. Responsive і dark mode</h2>
+<div class="subsection">
+<h3>md:, lg:, dark:</h3>
+<p>Модифікатори дозволяють змінювати стиль на певній ширині екрана або в темній темі.</p>
+<p>Це робить Tailwind дуже зручним для адаптивної розробки.</p>
+<div class="tip">@apply корисний тоді, коли однаковий набір утиліт багато разів повторюється.</div>
+<div class="preview"><div style="padding:20px;background:white;border-radius:18px;box-shadow:0 10px 30px rgba(15,23,42,.08);max-width:520px;">
+<h4 style="margin:0 0 10px;">Приклад компонента</h4>
+<p style="margin:0 0 12px;color:#475569;">У Tailwind подібний блок часто збирають утилітами прямо в HTML.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;">
+<span style="padding:6px 10px;border-radius:999px;background:#dbeafe;color:#1e40af;">md:</span>
+<span style="padding:6px 10px;border-radius:999px;background:#dbeafe;color:#1e40af;">hover:</span>
+<span style="padding:6px 10px;border-radius:999px;background:#dbeafe;color:#1e40af;">dark:</span>
+</div>
+</div></div>
+</div>
+</section>
+
+    <section class="section">
+      <h2>Практична робота на парі</h2>
+      <ol>
+        <li>Підключіть Tailwind через CDN.</li><li>Створіть картку з заголовком, текстом і кнопкою.</li><li>Додайте hover-стан кнопки.</li><li>Спробуйте md:flex або md:grid для зміни розкладки на ширших екранах.</li><li>Розберіть, як можна було б винести повторювані стилі через @apply.</li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <h2>Домашнє завдання</h2>
+      <ol>
+        <li>Створіть невелику landing-секцію за допомогою Tailwind CSS.</li><li>Повинні бути: заголовок, текст, кнопка і 3 картки переваг.</li><li>Використайте відступи, кольори, тіні, адаптивні модифікатори та hover-стани.</li><li>За бажанням додайте блок з темною темою через dark:.</li>
+      </ol>
+      <div class="note" style="margin-top:16px;">Практику і домашнє завдання залишено без ускладнення. Основне розширення у цьому файлі — це пояснення та окремі приклади для кожної частини теми.</div>
+    </section>
+
+    
+  </div>
+</body>
+</html>
